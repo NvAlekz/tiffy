@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Segoe UI Variable Text", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  --color-ink-950: #060a0f;
+  --color-ink-900: #0a1017;
+  --color-ink-850: #0d141d;
+  --color-ink-800: #111a24;
+  --color-ink-700: #1a2633;
+  --color-mint-200: #b9ffe8;
+  --color-mint-300: #7bf3d2;
+  --color-mint-400: #35dfb2;
+  --color-mint-500: #14c496;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  html,
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: transparent;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: #e6edf3;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: default;
+  }
+
+  ::selection {
+    background: rgba(53, 223, 178, 0.28);
+    color: #ffffff;
+  }
+}
+
+.window-drag {
+  -webkit-app-region: drag;
+}
+
+.no-drag,
+.no-drag * {
+  -webkit-app-region: no-drag;
+}
+
+.tiffy-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.24) transparent;
+}
+
+.tiffy-scroll::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.tiffy-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tiffy-scroll::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.22);
+}
+
+.tiffy-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.38);
+}
+
+@keyframes tiffy-rise {
+  from {
+    opacity: 0;
+    transform: translateY(5px) scale(0.988);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-rise {
+  animation: tiffy-rise 0.17s ease-out both;
+}
+
+@keyframes tiffy-ghost-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 1px rgba(53, 223, 178, 0.28), 0 0 20px rgba(53, 223, 178, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 0 1px rgba(53, 223, 178, 0.55), 0 0 28px rgba(53, 223, 178, 0.2);
+  }
+}
+
+.ghost-pulse {
+  animation: tiffy-ghost-glow 2.4s ease-in-out infinite;
+}
+
+@keyframes tiffy-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-toast {
+  animation: tiffy-toast-in 0.18s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise,
+  .animate-toast,
+  .ghost-pulse {
+    animation: none;
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "rooms": {
+      "$room": {
+        "messages": {
+          ".read": true,
+          ".write": true,
+          ".indexOn": ["createdAt"],
+          "$message": {
+            ".validate": "newData.hasChildren(['alias','senderId','type','createdAt']) && newData.child('alias').isString() && newData.child('alias').val().length > 0 && newData.child('alias').val().length <= 24 && newData.child('senderId').isString() && newData.child('senderId').val().length > 0 && newData.child('senderId').val().length <= 64 && newData.child('createdAt').isNumber() && ((newData.child('type').val() === 'text' && newData.child('text').isString() && newData.child('text').val().length <= 4000) || (newData.child('type').val() === 'image' && newData.child('image/dataUrl').isString() && newData.child('image/dataUrl').val().length <= 1500000 && newData.child('image/width').isNumber() && newData.child('image/height').isNumber()))"
+          }
+        }
+      }
+    }
+  }
+}
